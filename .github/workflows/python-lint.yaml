@@ -1,0 +1,31 @@
+name: Python Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 black
+    - name: Lint with flake8
+      run: |
+        flake8 . --exclude .circleci,'.git*',__pycache__,.idea,.venv \
+        --count --show-source --statistics --max-line-length=160
+    - name: Format with black
+      run: black --check .
