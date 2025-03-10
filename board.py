@@ -1,23 +1,23 @@
 from turtle import Turtle
-import pandas as pd
 
-FONT = ("Courier New", 16, "bold")
+FONT = ("Courier New", 8, "bold")
 
 
 class Board(Turtle):
 
-    def __init__(self):
+    def __init__(self, state_data):
         super().__init__()
         self.hideturtle()
         self.penup()
-        self.color("black")
         self.score = 0
+        self.state_data = state_data
+        self.place_state()
 
-    def place_state(self, state_data):
-        print(state_data)
-        self.goto(state_data[1],state_data[2])
+    def place_state(self):
+        print(self.state_data)
+        self.goto((self.state_data["x"], self.state_data["y"]))
         self.write(
-            state_data[0],
+            self.state_data["state"],
             align="center",
             font=FONT,
         )
