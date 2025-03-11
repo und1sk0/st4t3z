@@ -27,6 +27,6 @@ while len(guesses) < 51:
         guesses.append(answer_state)
 
 states_to_learn = [ state for state in states.state.tolist() if state not in guesses ]
-states_to_learn_series = pd.Series(states_to_learn)
-states_to_learn_series.to_csv("states_to_learn.csv")
+states_to_learn_df = pd.DataFrame(states_to_learn)
+states_to_learn_df.to_csv("states_to_learn.csv")
 main_screen.exitonclick()
