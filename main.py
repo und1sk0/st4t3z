@@ -15,8 +15,7 @@ correct_guesses = []
 
 while len(guesses) < 50:
     guess = screen.textinput(
-        title=f"Guess a state {len(guesses)}/50",
-        prompt="Enter state name: "
+        title=f"Guess a state {len(guesses)}/50", prompt="Enter state name: "
     ).title()
 
     if guess == "Exit":

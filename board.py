@@ -1,4 +1,5 @@
 from turtle import Turtle
+
 FONT = ("Courier New", 6, "bold")
 
 
